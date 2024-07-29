@@ -1,61 +1,73 @@
-import {useNavigate} from 'react-router-dom'
-import { useRef } from 'react';
-import {styled} from 'styled-components'
-import lupa from '../assets/lupa.svg'
+import styled from "styled-components";
+import PropTypes from 'prop-types';
 
+const FilterGroupContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+`;
 
-const FilterGroup = () => {
-    const inputRef = useRef(null)
-    const navigate = useNavigate();
-
-
-    const handleSearch = () =>{
-        const search = inputRef.current.trim()
-        if(search){
-            navigate(`/products?filter=${encodeURIComponent(search)}`)
-        }
-    }
-
-    const handleKeyDow = (event) => {
-        if(event.key === 'Enter'){
-            handleSearch();
-        }
-    }
-
-    const ContainerWrap = styled.div`
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         background-color: #cccccc43;
-        border-radius: 4px;
-        padding: 0 15px;
-    `;
-
-    const InputArea = styled.input`
-        font-family: 'Inter', sans-serif;
-        font-weight: 400;
-        width: 450px;
-        height: 50px;
-        background: none;
-        outline: none;
-        border: none;     
-    `;
+const InputCheckbox = styled.input`
+    width: 22px;
+    height: 22px;
+    margin-top: 5px;
+    cursor: pointer;
+    appearance: none; 
+    border: 2px solid #474747; 
+    border-radius: 2px;
+    transition: 200ms;
     
-    const Lupa = styled.img`
-        width: 24px;
-        height: 24px;
-      cursor: pointer;  
-    `;
+  
+    &:hover {
+        background-color: #C92071;
+    }
 
+    &:checked {
+        background-color: #C92071; 
+        border-color: #C92071; 
+    }
 
+    
+`;
+
+const LabelCheckbox = styled.label`
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #474747;
+`;
+
+const Title = styled.h3`
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    margin-bottom: 5px;
+`;
+
+const FilterGroup = ({title, inputType, options}) => {
     return ( 
-        <>
-            <ContainerWrap>
-                <InputArea type="text" placeholder="Pesquisar produto..." onKeyDown={handleKeyDow}/>
-                <Lupa src={lupa} onClick={handleSearch}/>
-            </ContainerWrap>
-        </>
-     );
+        <FilterGroupContainer>
+            <Title>{title}</Title>
+            {options.map((option, index) => (
+                <LabelCheckbox key={index}>
+                    <InputCheckbox type={inputType} value={option.value || option.text} />
+                    {option.text}
+                </LabelCheckbox>
+            ))}
+        </FilterGroupContainer>
+    );
 }
- 
+
+FilterGroup.propTypes = {
+    title: PropTypes.string.isRequired,
+    inputType: PropTypes.oneOf(["checkbox", "radio"]).isRequired,
+    options: PropTypes.arrayOf(
+        PropTypes.shape({
+            text: PropTypes.string.isRequired,
+            value: PropTypes.string
+        })
+    ).isRequired
+}
+
 export default FilterGroup;

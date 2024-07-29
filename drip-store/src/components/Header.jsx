@@ -1,5 +1,5 @@
 import Logo from './Logo'
-import FilterGroup from './FilterGroup'
+import SearchField from './SearchField'
 import RelationamentArea from './RelationamentArea'
 import NavigationHeader from './NavigationHeader'
 import {styled} from 'styled-components'
@@ -15,17 +15,23 @@ const Header = () => {
         margin: 20px;
         margin-top: 40px;
     `;
+
+    const HeaderContainer = styled.div`
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    `
     
 
     return ( 
         <>
+            <HeaderContainer>
                 <ContainerWrap>
                     <Logo color='#C92071'/>
-                    <FilterGroup/>
+                    <SearchField/>
                     <RelationamentArea/>
                     <img src={carrinho}/>
                 </ContainerWrap>
                 <NavigationHeader/>
+                </HeaderContainer>
         </>
      );
 }

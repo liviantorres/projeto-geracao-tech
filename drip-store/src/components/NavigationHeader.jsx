@@ -8,6 +8,7 @@ const NavigationHeader = () => {
         justify-content: start;
         margin-left: 130px;
         margin-top: 50px;
+        margin-bottom: 50px;
         transition: 200ms;
         & a{ 
             font-family: 'Inter', sans-serif;

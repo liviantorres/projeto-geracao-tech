@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PageLayout from '../layouts/PageLayout'
-import Home from "../pages/Home";
+import HomePage from "../pages/HomePage";
+import NotFound from "../pages/NotFound";
+import ProductListingPage from '../pages/ProductListingPage'
 
 const Paths = () => {
     return ( 
@@ -8,9 +10,10 @@ const Paths = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<PageLayout/>}>
-                        <Route index element={<Home/>}/>
-                        <Route path="/produtos" element={<Home/>}/>
+                        <Route index element={<HomePage/>}/>
+                        <Route path="/produtos" element={<ProductListingPage/>}/>
                     </Route>
+                    <Route path="*" element={<NotFound/>}/>
                 </Routes>
             </BrowserRouter>
         </>
