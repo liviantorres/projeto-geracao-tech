@@ -5,6 +5,7 @@ const FilterGroupContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin: 10px;
+    margin-bottom: 30px;
 `;
 
 const InputCheckbox = styled.input`
@@ -16,8 +17,7 @@ const InputCheckbox = styled.input`
     border: 2px solid #474747; 
     border-radius: 2px;
     transition: 200ms;
-    
-  
+
     &:hover {
         background-color: #C92071;
     }
@@ -26,8 +26,26 @@ const InputCheckbox = styled.input`
         background-color: #C92071; 
         border-color: #C92071; 
     }
+`;
 
-    
+const InputRadio = styled.input`
+    width: 22px;
+    height: 22px;
+    margin-top: 5px;
+    cursor: pointer;
+    appearance: none; 
+    border: 2px solid #474747; 
+    border-radius: 50%;
+    transition: 200ms;
+
+    &:hover {
+        background-color: #C92071;
+    }
+
+    &:checked {
+        background-color: #C92071; 
+        border-color: #C92071;
+    }
 `;
 
 const LabelCheckbox = styled.label`
@@ -45,13 +63,15 @@ const Title = styled.h3`
     margin-bottom: 5px;
 `;
 
-const FilterGroup = ({title, inputType, options}) => {
-    return ( 
+const FilterGroup = ({ title, inputType, options }) => {
+    const InputComponent = inputType === 'radio' ? InputRadio : InputCheckbox;
+
+    return (
         <FilterGroupContainer>
             <Title>{title}</Title>
             {options.map((option, index) => (
                 <LabelCheckbox key={index}>
-                    <InputCheckbox type={inputType} value={option.value || option.text} />
+                    <InputComponent type={inputType} name={title} value={option.value || option.text} />
                     {option.text}
                 </LabelCheckbox>
             ))}

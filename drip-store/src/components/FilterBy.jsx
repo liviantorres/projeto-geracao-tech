@@ -36,13 +36,40 @@ const FilterBy = () => {
             <Title>Filtrar por</Title>
             <Hr/>
             <FilterGroup
+                 title="Marca"
+                 inputType="checkbox"
+                 options={[
+                   { text: "Nike", value: "opt1" },
+                   { text: "Adidas" },
+                   { text: "Puma", value: "opt3" },
+                   { text: "Fila" }]}
+            />
+            <FilterGroup
                  title="Categoria"
                  inputType="checkbox"
                  options={[
-                   { text: "Opção 1", value: "opt1" },
-                   { text: "Opção 2" },
-                   { text: "Opção 3", value: "opt3" },
-                   { text: "Opção 4" }]}
+                   { text: "Esporte e Lazer", value: "opt1" },
+                   { text: "Casual" },
+                   { text: "Ultilitário", value: "opt3" },
+                   { text: "Corrida" }]}
+            />
+            <FilterGroup
+                 title="Genero"
+                 inputType="checkbox"
+                 options={[
+                    {text: 'Masculino'},
+                   { text: "Feminino" },
+                   { text: "Unisex" },
+                   ]}
+            />
+            <FilterGroup
+                 title="Estado"
+                 inputType="radio"
+                 options={[
+                    {text: 'Novo'},
+                   { text: "Usado" },
+                  
+                   ]}
             />
            
         </FilterByContainer>

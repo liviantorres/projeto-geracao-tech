@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { styled } from "styled-components";
+import {Link} from 'react-router-dom'
 
 const Card = styled.div`
   display: flex;
@@ -39,24 +40,31 @@ const PriceDiscount = styled.p`
   color: #1f1f1f;
 `;
 
-const ProductCard = ({ image, name, price, priceDiscount = "" }) => {
+
+
+const ProductCard = ({ id, image, name, price, priceDiscount = "" }) => {
   return (
     <>
-      <Card>
-        <Image src={image} alt={name} />
-        <Name>{name}</Name>
-        <Price discount={priceDiscount}>{price}</Price>
-        {priceDiscount && (
-          <PriceDiscount discount={priceDiscount}>
-            {priceDiscount}
-          </PriceDiscount>
-        )}
-      </Card>
+      
+        <Card>
+        <Link to={`/produtos/${id}`}>
+          <Image src={image} alt={name} />
+        </Link>
+          <Name>{name}</Name>
+          <Price discount={priceDiscount}>{price}</Price>
+          {priceDiscount && (
+            <PriceDiscount discount={priceDiscount}>
+              {priceDiscount}
+            </PriceDiscount>
+          )}
+        </Card>
+      
     </>
   );
 };
 
 ProductCard.propTypes = {
+  id: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
